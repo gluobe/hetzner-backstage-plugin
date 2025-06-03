@@ -1,0 +1,114 @@
+openapi: 3.0.3
+info:
+  title: Hetzner Backend Plugin API
+  version: 1.0.0
+  description: API documentation for the Hetzner Backend Plugin.
+servers:
+  - url: http://localhost:7007/api/hetzner
+paths:
+  /health:
+    get:
+      summary: Health check
+      description: Returns status indicating the service is running.
+      responses:
+        '200':
+          description: Service is healthy
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: ok
+
+  /overview:
+    get:
+      summary: Get overview
+      description: Retrieves an overview of Hetzner resources.
+      responses:
+        '200':
+          description: Overview fetched successfully
+          content:
+            application/json:
+              schema:
+                type: object
+        '500':
+          description: Internal Server Error
+
+  /servers:
+    get:
+      summary: Get servers
+      description: Retrieves a list of servers from Hetzner.
+      responses:
+        '200':
+          description: List of servers
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+        '500':
+          description: Internal Server Error
+
+  /volumes:
+    get:
+      summary: Get volumes
+      description: Retrieves a list of volumes from Hetzner.
+      responses:
+        '200':
+          description: List of volumes
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+        '500':
+          description: Internal Server Error
+
+  /primary_ips:
+    get:
+      summary: Get primary IPs
+      description: Retrieves a list of primary IPs from Hetzner.
+      responses:
+        '200':
+          description: List of primary IPs
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+        '500':
+          description: Internal Server Error
+
+  /resources:
+    get:
+      summary: Get all resources
+      description: Retrieves all Hetzner resources including servers, volumes, and IPs.
+      responses:
+        '200':
+          description: Combined resource list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+        '500':
+          description: Internal Server Error
+
+  /openapi.yaml:
+    get:
+      summary: Download OpenAPI Spec
+      description: Serves the OpenAPI specification YAML file.
+      responses:
+        '200':
+          description: OpenAPI spec file
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
