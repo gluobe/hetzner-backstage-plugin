@@ -27,6 +27,8 @@ jobs:
 
     - run: yarn install --immutable
 
+    - run: yarn build
+
     - run: npx changeset version
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
