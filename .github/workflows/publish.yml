@@ -27,7 +27,7 @@ jobs:
 
     - run: yarn install --immutable
 
-    - run: yarn build
+    - run: yarn build:all
 
     - run: npx changeset version
       env:
