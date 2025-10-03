@@ -195,6 +195,7 @@ yarn test
 ```
 
 Run tests with coverage:
+
 ```bash
 yarn test:coverage
 ```

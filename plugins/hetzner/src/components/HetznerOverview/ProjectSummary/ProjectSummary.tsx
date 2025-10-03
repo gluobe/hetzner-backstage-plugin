@@ -17,7 +17,7 @@ interface OverviewData {
   totalPrimaryIps: number;
 }
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   value: {
     overflow: 'hidden',
     lineHeight: '24px',
@@ -70,7 +70,7 @@ const MetricCard = ({
         variant="h4"
         className={classes.value}
         sx={{
-          color: error ? (theme) => theme.palette.error.main : '#1976d2',
+          color: error ? theme => theme.palette.error.main : '#1976d2',
           fontWeight: 'bold',
         }}
       >

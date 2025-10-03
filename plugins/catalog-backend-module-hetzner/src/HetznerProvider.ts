@@ -78,7 +78,7 @@ export class HetznerProvider implements EntityProvider {
   constructor(
     taskRunner: SchedulerServiceTaskRunner,
     config: Config,
-    auth: AuthService
+    auth: AuthService,
   ) {
     console.log('HetznerProvider constructor called');
     this.taskRunner = taskRunner;
@@ -120,21 +120,21 @@ export class HetznerProvider implements EntityProvider {
     const serverEntities = await this.fetchAndMapEntities<HetznerServer>(
       `${this.baseUrl}/api/hetzner/servers`,
       token,
-      this.mapServerToEntity
+      this.mapServerToEntity,
     );
 
     // Fetch and map volumes
     const volumeEntities = await this.fetchAndMapEntities<HetznerVolume>(
       `${this.baseUrl}/api/hetzner/volumes`,
       token,
-      this.mapVolumeToEntity
+      this.mapVolumeToEntity,
     );
 
     // Fetch and map primary IPs
     const primaryIPEntities = await this.fetchAndMapEntities<HetznerPrimaryIP>(
       `${this.baseUrl}/api/hetzner/primary_ips`,
       token,
-      this.mapPrimaryIPToEntity
+      this.mapPrimaryIPToEntity,
     );
 
     // Combine all entities
@@ -145,13 +145,13 @@ export class HetznerProvider implements EntityProvider {
     ];
 
     console.log(
-      `Prepared ${allEntities.length} entities for catalog ingestion.`
+      `Prepared ${allEntities.length} entities for catalog ingestion.`,
     );
 
     try {
       await this.connection.applyMutation({
         type: 'full',
-        entities: allEntities.map((entity) => ({
+        entities: allEntities.map(entity => ({
           entity,
           locationKey: 'hetzner-provider',
         })),
@@ -167,7 +167,7 @@ export class HetznerProvider implements EntityProvider {
   private async fetchAndMapEntities<T>(
     apiUrl: string,
     token: string,
-    mapFn: (data: T) => Entity
+    mapFn: (data: T) => Entity,
   ): Promise<Entity[]> {
     const response = await fetch(apiUrl, {
       method: 'GET',
@@ -179,7 +179,7 @@ export class HetznerProvider implements EntityProvider {
 
     if (!response.ok) {
       throw new Error(
-        `Failed to fetch data from ${apiUrl}: ${response.statusText}`
+        `Failed to fetch data from ${apiUrl}: ${response.statusText}`,
       );
     }
 

@@ -19,10 +19,10 @@ export const EntityHetznerContent = hetznerPlugin.provide(
     component: {
       lazy: () =>
         import('./components/Resource/ResourcesCard').then(
-          (m) => m.ResourcesCard
+          m => m.ResourcesCard,
         ),
     },
-  })
+  }),
 );
 
 export const HetznerPage = hetznerPlugin.provide(
@@ -30,8 +30,8 @@ export const HetznerPage = hetznerPlugin.provide(
     name: 'HetznerCloudPage',
     component: () =>
       import('./components/HetznerOverview/OverviewPage').then(
-        (m) => m.OverviewPage
+        m => m.OverviewPage,
       ),
     mountPoint: rootRouteRef,
-  })
+  }),
 );

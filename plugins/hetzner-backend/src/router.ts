@@ -1,9 +1,7 @@
 import express, { Request, Response } from 'express';
 import Router from 'express-promise-router';
 import { resolve } from 'path';
-import {
-  LoggerService,
-} from '@backstage/backend-plugin-api';
+import { LoggerService } from '@backstage/backend-plugin-api';
 import { HetznerService } from './services/HetznerService/types';
 
 export interface RouterOptions {
@@ -12,7 +10,7 @@ export interface RouterOptions {
 }
 
 export async function createRouter(
-  options: RouterOptions
+  options: RouterOptions,
 ): Promise<express.Router> {
   const { logger, hetznerService } = options;
 
@@ -71,9 +69,9 @@ export async function createRouter(
         hetznerService.getVolumes(),
         hetznerService.getPrimaryIps(),
       ]);
-  
+
       const resources = [...servers, ...volumes, ...primaryIps];
-  
+
       res.status(200).json(resources);
     } catch (error: any) {
       logger.error(`Error fetching resources: ${error.message}`);

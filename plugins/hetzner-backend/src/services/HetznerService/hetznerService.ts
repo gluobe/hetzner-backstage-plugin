@@ -23,7 +23,7 @@ export async function createHetznerService({
 
     async getServers() {
       const servers = await ServersService.getServers();
-      return servers.servers.map((server) => ({
+      return servers.servers.map(server => ({
         id: server.id.toString(),
         name: server.name,
         status: server.status,
@@ -58,33 +58,33 @@ export async function createHetznerService({
         outgoing_traffic: server.outgoing_traffic || null,
         ingoing_traffic: server.ingoing_traffic || null,
         included_traffic: server.included_traffic || null,
-        resource_type: "virtual_machine"
+        resource_type: 'virtual_machine',
       }));
     },
 
     async getVolumes() {
       const volumes = await VolumesService.getVolumes();
-      return volumes.volumes.map((volume) => ({
+      return volumes.volumes.map(volume => ({
         id: volume.id.toString(),
         name: volume.name,
         size: volume.size,
         status: volume.status,
         created: volume.created,
         server: volume.server,
-        resource_type: "volume"
+        resource_type: 'volume',
       }));
     },
 
     async getPrimaryIps() {
       const primaryIps = await PrimaryIPsService.getPrimaryIps();
-      return primaryIps.primary_ips.map((primaryIp) => ({
+      return primaryIps.primary_ips.map(primaryIp => ({
         id: primaryIp.id.toString(),
         name: primaryIp.name,
         server: primaryIp.assignee_type,
         ip: primaryIp.ip,
         type: primaryIp.type,
         created: primaryIp.created,
-        resource_type: "primary_ip"
+        resource_type: 'primary_ip',
       }));
     },
   };

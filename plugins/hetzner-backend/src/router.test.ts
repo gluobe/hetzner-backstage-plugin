@@ -181,7 +181,7 @@ describe('createRouter', () => {
       expect(response.status).toBe(500);
       expect(response.body).toEqual({ error: 'Internal Server Error' });
       expect(logger.error).toHaveBeenCalledWith(
-        'Error fetching overview: Test error'
+        'Error fetching overview: Test error',
       );
     });
   });
@@ -205,7 +205,7 @@ describe('createRouter', () => {
       expect(response.status).toBe(500);
       expect(response.body).toEqual({ error: 'Internal Server Error' });
       expect(logger.error).toHaveBeenCalledWith(
-        'Error fetching servers: Test error'
+        'Error fetching servers: Test error',
       );
     });
   });
@@ -229,7 +229,7 @@ describe('createRouter', () => {
       expect(response.status).toBe(500);
       expect(response.body).toEqual({ error: 'Internal Server Error' });
       expect(logger.error).toHaveBeenCalledWith(
-        'Error fetching volumes: Test error'
+        'Error fetching volumes: Test error',
       );
     });
   });
@@ -253,7 +253,7 @@ describe('createRouter', () => {
       expect(response.status).toBe(500);
       expect(response.body).toEqual({ error: 'Internal Server Error' });
       expect(logger.error).toHaveBeenCalledWith(
-        'Error fetching primary IPs: Test error'
+        'Error fetching primary IPs: Test error',
       );
     });
   });

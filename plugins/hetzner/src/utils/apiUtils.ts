@@ -15,7 +15,7 @@ export interface Resource {
  */
 export const fetchResources = async (
   baseUrl: string | undefined,
-  identityApi: IdentityApi
+  identityApi: IdentityApi,
 ): Promise<Resource[]> => {
   if (!baseUrl) {
     throw new Error('Base URL is not defined');
@@ -41,7 +41,7 @@ export const fetchResources = async (
 
 export const fetchHetznerOverview = async (
   identityApi: IdentityApi,
-  apiUrl: string
+  apiUrl: string,
 ): Promise<{
   totalServers: number;
   totalVolumes: number;

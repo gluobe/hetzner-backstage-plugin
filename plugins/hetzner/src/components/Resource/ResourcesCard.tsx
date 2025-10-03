@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { ResourceDetails } from './ResourceDetails/ResourceDetails';
 import { Typography } from '@mui/material';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   value: {
     overflow: 'hidden',
     lineHeight: '24px',

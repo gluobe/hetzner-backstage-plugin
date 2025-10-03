@@ -19,6 +19,8 @@ export const DetailRow = ({
     >
       {label}
     </Typography>
-    <Typography variant="body2" className={classes.value}>{value || 'N/A'}</Typography>
+    <Typography variant="body2" className={classes.value}>
+      {value || 'N/A'}
+    </Typography>
   </Grid>
 );

@@ -33,14 +33,14 @@ export const ResourceComponent = () => {
     {
       title: 'ID',
       field: 'id',
-      render: (row) => (
+      render: row => (
         <Link to={`/catalog/default/resource/${row.name}`}>{row.id}</Link>
       ),
     },
     {
       title: 'Name',
       field: 'name',
-      render: (row) => (
+      render: row => (
         <Link to={`/catalog/default/resource/${row.name}`}>{row.name}</Link>
       ),
     },
