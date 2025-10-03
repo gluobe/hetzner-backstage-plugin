@@ -1,1 +1,0 @@
-export { ProjectSummary } from './ProjectSummary';
