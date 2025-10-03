@@ -1,4 +1,4 @@
-import { Grid } from '@mui/material';
+import { Grid } from '@material-ui/core';
 import { Header, Page, Content, HeaderLabel } from '@backstage/core-components';
 import { useApi, configApiRef } from '@backstage/core-plugin-api';
 import { ProjectSummary } from '../ProjectSummary';

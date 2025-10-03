@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { Typography, CircularProgress, Grid, Box } from '@mui/material';
+import { Typography, CircularProgress, Box } from '@mui/material';
+import { Grid } from '@material-ui/core';
 import { InfoCard } from '@backstage/core-components';
 import { useNavigate } from 'react-router-dom';
 import {

@@ -1,4 +1,4 @@
-import { Grid } from '@mui/material';
+import { Grid } from '@material-ui/core';
 import { InfoCard } from '@backstage/core-components';
 import { DetailRow } from './DetailRow';
 

@@ -24,7 +24,7 @@ export async function createRouter(
     res.json({ status: 'ok' });
   });
 
-  router.get('/overview', async (req: Request, res: Response) => {
+  router.get('/overview', async (_req: Request, res: Response) => {
     try {
       const result = await hetznerService.getOverview();
       res.status(200).json(result);
@@ -34,7 +34,7 @@ export async function createRouter(
     }
   });
 
-  router.get('/servers', async (req: Request, res: Response) => {
+  router.get('/servers', async (_req: Request, res: Response) => {
     try {
       const result = await hetznerService.getServers();
       res.status(200).json(result);
@@ -44,7 +44,7 @@ export async function createRouter(
     }
   });
 
-  router.get('/volumes', async (req: Request, res: Response) => {
+  router.get('/volumes', async (_req: Request, res: Response) => {
     try {
       const result = await hetznerService.getVolumes();
       res.status(200).json(result);
@@ -54,7 +54,7 @@ export async function createRouter(
     }
   });
 
-  router.get('/primary_ips', async (req: Request, res: Response) => {
+  router.get('/primary_ips', async (_req: Request, res: Response) => {
     try {
       const result = await hetznerService.getPrimaryIps();
       res.status(200).json(result);
@@ -64,7 +64,7 @@ export async function createRouter(
     }
   });
 
-  router.get('/resources', async (req: Request, res: Response) => {
+  router.get('/resources', async (_req: Request, res: Response) => {
     try {
       const [servers, volumes, primaryIps] = await Promise.all([
         hetznerService.getServers(),
