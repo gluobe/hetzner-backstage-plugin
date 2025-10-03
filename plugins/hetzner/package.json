@@ -45,7 +45,6 @@
     "@mui/lab": "^7.0.0",
     "@mui/material": "^7.3.3",
     "@mui/styles": "6.5.0",
-    "backstage-cli": "^1.0.0-alpha.2",
     "react-dom": "^19.2.0",
     "react-markdown": "^10.1.0",
     "react-router-dom": "^7.9.3",
