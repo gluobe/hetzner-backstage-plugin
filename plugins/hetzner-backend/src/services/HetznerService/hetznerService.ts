@@ -46,6 +46,7 @@ export async function createHetznerService({
           name: server.server_type.name,
           description: server.server_type.description,
           cores: server.server_type.cores,
+          architecture: server.server_type.architecture,
           memory: server.server_type.memory,
           disk: server.server_type.disk,
         },
