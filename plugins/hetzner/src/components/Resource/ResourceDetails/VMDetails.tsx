@@ -105,6 +105,11 @@ export const VMDetails = ({
               classes={classes}
             />
             <DetailRow
+              label="CPU Architecture"
+              value={data.server_type?.architecture}
+              classes={classes}
+            />
+            <DetailRow
               label="Memory"
               value={`${data.server_type?.memory || 'N/A'} GB`}
               classes={classes}
