@@ -222,7 +222,7 @@ import {
 
 // dev
 import { EntityProvider } from '@backstage/plugin-catalog-react';
-import { CustomHetznerAboutCard } from '../src/components/custom/HetznerEntityAboutCard';
+import { ResourcesCard } from '../src/components/Resource/ResourcesCard';
 
 // dev
 const mockEntity = {
@@ -273,9 +273,9 @@ const mockEntity = {
 };
 
 createDevApp()
-  .registerPlugin(hetznerCloudPlugin)
+  .registerPlugin(hetznerPlugin)
   .addPage({
-    element: <HetznerCloudPage />,
+    element: <HetznerPage />,
     title: 'Root Page',
     path: '/hetzner-cloud',
   })
@@ -322,7 +322,7 @@ import {
 
 import { resourcesCardRouteRef, rootRouteRef } from './routes';
 
-export const hetznerCloudPlugin = createPlugin({
+export const hetznerPlugin = createPlugin({
   id: 'hetzner-cloud',
   routes: {
     root: rootRouteRef,
@@ -331,7 +331,7 @@ export const hetznerCloudPlugin = createPlugin({
 });
 
 // prod
-// export const EntityHetznerCloudContent = hetznerCloudPlugin.provide(
+// export const EntityHetznerContent = hetznerPlugin.provide(
 //   createComponentExtension({
 //     component: {
 //       lazy: () => import ('./components/entity/ResourcesCard').then(m => m.ResourcesCard),
@@ -339,9 +339,9 @@ export const hetznerCloudPlugin = createPlugin({
 //   })
 // );
 
-export const HetznerCloudPage = hetznerCloudPlugin.provide(
+export const HetznerPage = hetznerPlugin.provide(
   createRoutableExtension({
-    name: 'HetznerCloudPage',
+    name: 'HetznerPage',
     component: () =>
       import('./components/IndexComponent').then(m => m.IndexComponent),
     mountPoint: rootRouteRef,
@@ -349,11 +349,11 @@ export const HetznerCloudPage = hetznerCloudPlugin.provide(
 );
 
 // dev
-export const ResourcesCardPage = hetznerCloudPlugin.provide(
+export const ResourcesCardPage = hetznerPlugin.provide(
   createRoutableExtension({
     name: 'ResourcesCardPage',
     component: () =>
-      import('./components/entity/ResourcesCard').then(m => m.ResourcesCard),
+      import('./components/Resource/ResourcesCard').then(m => m.ResourcesCard),
     mountPoint: resourcesCardRouteRef,
   }),
 );
@@ -365,8 +365,8 @@ This file defines the main plugin and its extensions. It connects the plugin's r
 
 ```ts
 export {
-  hetznerCloudPlugin,
-  HetznerCloudPage,
+  hetznerPlugin,
+  HetznerPage,
   ResourcesCardPage, //dev
 } from './plugin';
 ```
