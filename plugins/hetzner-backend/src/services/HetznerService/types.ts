@@ -28,6 +28,7 @@ export interface HetznerService {
         name: string;
         description: string;
         cores: number;
+        architecture: string,
         memory: number;
         disk: number;
       };
