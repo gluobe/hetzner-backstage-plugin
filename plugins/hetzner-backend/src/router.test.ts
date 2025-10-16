@@ -34,6 +34,7 @@ const mockServers = [
       name: 'cx11',
       description: 'Cloud Server CX11',
       cores: 1,
+      architecture: 'x86',
       memory: 2,
       disk: 20,
     },
