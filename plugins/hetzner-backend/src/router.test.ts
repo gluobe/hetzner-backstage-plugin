@@ -71,6 +71,7 @@ const mockServers = [
       name: 'cx21',
       description: 'Cloud Server CX21',
       cores: 2,
+      architecture: 'x86',
       memory: 4,
       disk: 40,
     },
