@@ -3,11 +3,14 @@ import { HetznerService } from './types';
 import { ServersService } from '../../hetznerClient/services/ServersService';
 import { VolumesService } from '../../hetznerClient/services/VolumesService';
 import { PrimaryIPsService } from '../../hetznerClient/services/PrimaryIPsService';
+import { OpenAPI } from '../../hetznerClient/core/OpenAPI';
 
 export async function createHetznerService({
   logger,
+  tokens,
 }: {
   logger: LoggerService;
+  tokens: string[];
 }): Promise<HetznerService> {
   logger.info('Initializing hetznerService');
 
@@ -22,8 +25,13 @@ export async function createHetznerService({
     },
 
     async getServers() {
-      const servers = await ServersService.getServers();
-      return servers.servers.map(server => ({
+      const servers = [];
+      for (const token of tokens) {
+        OpenAPI.TOKEN = token;
+        const serversForProject = (await ServersService.getServers()).servers;
+        servers.push(...serversForProject);
+      }
+      return servers.map(server => ({
         id: server.id.toString(),
         name: server.name,
         status: server.status,
