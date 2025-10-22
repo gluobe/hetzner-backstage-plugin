@@ -35,8 +35,6 @@ export const hetznerPlugin = createBackendPlugin({
           throw new Error('No Hetzner tokens set.');
         }
 
-        OpenAPI.TOKEN = tokens[0];
-
         logger.info('Hetzner API token loaded successfully.');
 
         const hetznerService = await createHetznerService({
