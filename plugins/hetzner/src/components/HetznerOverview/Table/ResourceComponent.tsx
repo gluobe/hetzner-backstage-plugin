@@ -1,5 +1,6 @@
 import { useEffect, useState, useCallback } from 'react';
-import { Skeleton, Typography } from '@mui/material';
+import { Skeleton } from '@mui/material/Skeleton ';
+import { Typography } from '@mui/material/Typography ';
 import { InfoCard, Link, Table, TableColumn } from '@backstage/core-components';
 import {
   identityApiRef,

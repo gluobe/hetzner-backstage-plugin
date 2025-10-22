@@ -1,7 +1,7 @@
 import express, { Request, Response } from 'express';
 import Router from 'express-promise-router';
 import { resolve } from 'path';
-import { LoggerService } from '@backstage/backend-plugin-api';
+import { LoggerService, resolvePackagePath } from '@backstage/backend-plugin-api';
 import { HetznerService } from './services/HetznerService/types';
 
 export interface RouterOptions {
@@ -81,7 +81,7 @@ export async function createRouter(
 
   router.get('/openapi.yaml', (_, res: Response) => {
     res.setHeader('Content-Type', 'application/octet-stream');
-    res.sendFile(resolve(__dirname, '../openapi.yaml'));
+    res.sendFile(resolve(resolvePackagePath('@gluo-nv/backstage-plugin-hetzner-backend'), 'openapi.yaml'));
   });
 
   return router;

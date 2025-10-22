@@ -21,7 +21,7 @@ export const hetznerPlugin = createBackendPlugin({
         config: coreServices.rootConfig,
       },
       async init({ logger, httpRouter, config }) {
-        let tokensFromConfig = [];
+        const tokensFromConfig = [];
         if (config.has('backend.hetzner.tokens')) {
           tokensFromConfig.push(
             ...config.getOptionalStringArray('backend.hetzner.tokens'),
@@ -34,7 +34,7 @@ export const hetznerPlugin = createBackendPlugin({
         }
         const tokens = [...new Set(tokensFromConfig)];
 
-        if (tokens.length == 0) {
+        if (tokens.length === 0) {
           logger.error('No Hetzner tokens set.');
           throw new Error('No Hetzner tokens set.');
         }

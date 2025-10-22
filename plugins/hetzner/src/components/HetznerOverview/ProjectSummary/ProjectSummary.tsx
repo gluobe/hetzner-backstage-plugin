@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
-import { Typography, CircularProgress, Box } from '@mui/material';
+import { Box } from '@mui/material/Box';
+import { CircularProgress } from '@mui/material/CircularProgress';
+import { Typography } from '@mui/material/Typography';
 import { Grid } from '@material-ui/core';
 import { InfoCard } from '@backstage/core-components';
 import { useNavigate } from 'react-router-dom';
@@ -111,6 +113,7 @@ export const ProjectSummary = () => {
 
   useEffect(() => {
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [HETZNER_API_URL, identityApi]);
 
   const handleNavigate = (resourceType: string) => {
