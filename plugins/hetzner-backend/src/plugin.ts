@@ -21,11 +21,18 @@ export const hetznerPlugin = createBackendPlugin({
         config: coreServices.rootConfig,
       },
       async init({ logger, httpRouter, config }) {
-        const tokens = config.getOptionalStringArray('backend.hetzner.token');
+        let tokensFromConfig = [];
+        if (config.has('backend.hetzner.tokens')) {
+          tokensFromConfig.push(...config.getOptionalStringArray('backend.hetzner.tokens'));
+        }
+        if (config.has('backend.hetzner.token')) {
+          tokensFromConfig.push(config.getOptionalString('backend.hetzner.token'));
+        }
+        const tokens = [...new Set(tokensFromConfig)];
 
-        if (!tokens) {
-          logger.error('HCLOUD_TOKEN is not set.');
-          throw new Error('HCLOUD_TOKEN is not set.');
+        if (tokens.length == 0) {
+          logger.error('No Hetzner tokens set.');
+          throw new Error('No Hetzner tokens set.');
         }
 
         OpenAPI.TOKEN = tokens[0];

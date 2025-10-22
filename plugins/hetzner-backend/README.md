@@ -64,6 +64,17 @@ backend:
     token: ${HCLOUD_TOKEN}
 ```
 
+You can also add multiple tokes for multiple projects if you like:
+
+```yaml
+backend:
+  hetzner:
+    tokens:
+    - ${HCLOUD_PROJECT_X}
+    - ${HCLOUD_PROJECT_Y}
+    - ${HCLOUD_PROJECT_Z}
+```
+
 Add the plugin to the backend in `packages/backend/src/index.ts`:
 
 ```typescript
