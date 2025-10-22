@@ -23,10 +23,14 @@ export const hetznerPlugin = createBackendPlugin({
       async init({ logger, httpRouter, config }) {
         let tokensFromConfig = [];
         if (config.has('backend.hetzner.tokens')) {
-          tokensFromConfig.push(...config.getOptionalStringArray('backend.hetzner.tokens'));
+          tokensFromConfig.push(
+            ...config.getOptionalStringArray('backend.hetzner.tokens'),
+          );
         }
         if (config.has('backend.hetzner.token')) {
-          tokensFromConfig.push(config.getOptionalString('backend.hetzner.token'));
+          tokensFromConfig.push(
+            config.getOptionalString('backend.hetzner.token'),
+          );
         }
         const tokens = [...new Set(tokensFromConfig)];
 
