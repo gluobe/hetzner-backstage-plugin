@@ -75,6 +75,13 @@ backend:
     - ${HCLOUD_PROJECT_Z}
 ```
 
+> **_NOTE:_**  The plugin doesn't enforce a limit on the amount of projects you
+add. The more projects you add, the slower the output will become visible in
+Backstage. This is because an API-call has to be done for every project. Another
+important thing to consider is that you won't be able to tell which resources
+belong to which project. This is because the project's name is not sent back in
+the Hetzner Cloud API.
+
 Add the plugin to the backend in `packages/backend/src/index.ts`:
 
 ```typescript
