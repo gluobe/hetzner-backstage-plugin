@@ -4,7 +4,6 @@ import {
 } from '@backstage/backend-plugin-api';
 import { createRouter } from './router';
 import { createHetznerService } from './services/HetznerService';
-import { OpenAPI } from './hetznerClient/core/OpenAPI';
 
 /**
  * hetznerPlugin backend plugin
@@ -24,7 +23,7 @@ export const hetznerPlugin = createBackendPlugin({
         const tokensFromConfig = [];
         if (config.has('backend.hetzner.tokens')) {
           tokensFromConfig.push(
-            ...config.getOptionalStringArray('backend.hetzner.tokens'),
+            ...(config.getOptionalStringArray('backend.hetzner.tokens') ?? []),
           );
         }
         if (config.has('backend.hetzner.token')) {
@@ -32,7 +31,9 @@ export const hetznerPlugin = createBackendPlugin({
             config.getOptionalString('backend.hetzner.token'),
           );
         }
-        const tokens = [...new Set(tokensFromConfig)];
+        const tokens = [...new Set(tokensFromConfig)].filter(
+          (token): token is string => token !== undefined,
+        );
 
         if (tokens.length === 0) {
           logger.error('No Hetzner tokens set.');

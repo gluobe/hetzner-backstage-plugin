@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import { Box } from '@mui/material/Box';
-import { CircularProgress } from '@mui/material/CircularProgress';
-import { Typography } from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+import CircularProgress from '@mui/material/CircularProgress';
+import Typography from '@mui/material/Typography';
 import { Grid } from '@material-ui/core';
 import { InfoCard } from '@backstage/core-components';
 import { useNavigate } from 'react-router-dom';

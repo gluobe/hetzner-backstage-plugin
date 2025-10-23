@@ -3,11 +3,12 @@ import { HetznerService } from './types';
 import { ServersService } from '../../hetznerClient/services/ServersService';
 import { VolumesService } from '../../hetznerClient/services/VolumesService';
 import { PrimaryIPsService } from '../../hetznerClient/services/PrimaryIPsService';
+import { CancelablePromise } from '../../hetznerClient/core/CancelablePromise';
 import { OpenAPI } from '../../hetznerClient/core/OpenAPI';
 
 async function getAllResources<T>(
   tokens: string[],
-  serviceMethod: Promise<{ [key: string]: T[] }>,
+  serviceMethod: () => CancelablePromise<any>,
   resourceKey: string,
 ): Promise<T[]> {
   const resources: T[] = [];
@@ -33,21 +34,21 @@ export async function createHetznerService({
   return {
     async getOverview() {
       const totalServers = (
-        await getAllResources<Server>(
+        await getAllResources<any>(
           tokens,
           () => ServersService.getServers(),
           'servers',
         )
       ).length;
       const totalVolumes = (
-        await getAllResources<Volume>(
+        await getAllResources<any>(
           tokens,
           () => VolumesService.getVolumes(),
           'volumes',
         )
       ).length;
       const totalPrimaryIps = (
-        await getAllResources<PrimaryIp>(
+        await getAllResources<any>(
           tokens,
           () => PrimaryIPsService.getPrimaryIps(),
           'primary_ips',
@@ -57,7 +58,7 @@ export async function createHetznerService({
     },
 
     async getServers() {
-      const servers = await getAllResources<Server>(
+      const servers = await getAllResources<any>(
         tokens,
         () => ServersService.getServers(),
         'servers',
@@ -103,7 +104,7 @@ export async function createHetznerService({
     },
 
     async getVolumes() {
-      const volumes = await getAllResources<Volume>(
+      const volumes = await getAllResources<any>(
         tokens,
         () => VolumesService.getVolumes(),
         'volumes',
@@ -120,7 +121,7 @@ export async function createHetznerService({
     },
 
     async getPrimaryIps() {
-      const primaryIps = await getAllResources<Volume>(
+      const primaryIps = await getAllResources<any>(
         tokens,
         () => PrimaryIPsService.getPrimaryIps(),
         'primary_ips',

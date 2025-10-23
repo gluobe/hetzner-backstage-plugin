@@ -2,7 +2,7 @@ import { useEntity } from '@backstage/plugin-catalog-react';
 import { InfoCard } from '@backstage/core-components';
 import { makeStyles } from '@material-ui/core/styles';
 import { ResourceDetails } from './ResourceDetails/ResourceDetails';
-import { Typography } from '@mui/material/Typography';
+import Typography from '@mui/material/Typography';
 
 const useStyles = makeStyles(theme => ({
   value: {
