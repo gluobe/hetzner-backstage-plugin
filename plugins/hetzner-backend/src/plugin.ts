@@ -4,7 +4,6 @@ import {
 } from '@backstage/backend-plugin-api';
 import { createRouter } from './router';
 import { createHetznerService } from './services/HetznerService';
-import { OpenAPI } from './hetznerClient/core/OpenAPI';
 
 /**
  * hetznerPlugin backend plugin
@@ -21,19 +20,31 @@ export const hetznerPlugin = createBackendPlugin({
         config: coreServices.rootConfig,
       },
       async init({ logger, httpRouter, config }) {
-        const token = config.getOptionalString('backend.hetzner.token');
-
-        if (!token) {
-          logger.error('HCLOUD_TOKEN is not set.');
-          throw new Error('HCLOUD_TOKEN is not set.');
+        const tokensFromConfig = [];
+        if (config.has('backend.hetzner.tokens')) {
+          tokensFromConfig.push(
+            ...(config.getOptionalStringArray('backend.hetzner.tokens') ?? []),
+          );
         }
+        if (config.has('backend.hetzner.token')) {
+          tokensFromConfig.push(
+            config.getOptionalString('backend.hetzner.token'),
+          );
+        }
+        const tokens = [...new Set(tokensFromConfig)].filter(
+          (token): token is string => token !== undefined,
+        );
 
-        OpenAPI.TOKEN = token;
+        if (tokens.length === 0) {
+          logger.error('No Hetzner tokens set.');
+          throw new Error('No Hetzner tokens set.');
+        }
 
         logger.info('Hetzner API token loaded successfully.');
 
         const hetznerService = await createHetznerService({
           logger,
+          tokens,
         });
 
         httpRouter.use(

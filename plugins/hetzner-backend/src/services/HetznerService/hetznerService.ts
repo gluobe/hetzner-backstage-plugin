@@ -3,27 +3,67 @@ import { HetznerService } from './types';
 import { ServersService } from '../../hetznerClient/services/ServersService';
 import { VolumesService } from '../../hetznerClient/services/VolumesService';
 import { PrimaryIPsService } from '../../hetznerClient/services/PrimaryIPsService';
+import { CancelablePromise } from '../../hetznerClient/core/CancelablePromise';
+import { OpenAPI } from '../../hetznerClient/core/OpenAPI';
+
+async function getAllResources<T>(
+  tokens: string[],
+  serviceMethod: () => CancelablePromise<any>,
+  resourceKey: string,
+): Promise<T[]> {
+  const resources: T[] = [];
+  for (const token of tokens) {
+    OpenAPI.TOKEN = token;
+    const result = await serviceMethod();
+    if (result && Array.isArray(result[resourceKey])) {
+      resources.push(...result[resourceKey]);
+    }
+  }
+  return resources;
+}
 
 export async function createHetznerService({
   logger,
+  tokens,
 }: {
   logger: LoggerService;
+  tokens: string[];
 }): Promise<HetznerService> {
   logger.info('Initializing hetznerService');
 
   return {
     async getOverview() {
-      const totalServers = (await ServersService.getServers()).servers.length;
-      const totalVolumes = (await VolumesService.getVolumes()).volumes.length;
-      const totalPrimaryIps = (await PrimaryIPsService.getPrimaryIps())
-        .primary_ips.length;
-
+      const totalServers = (
+        await getAllResources<any>(
+          tokens,
+          () => ServersService.getServers(),
+          'servers',
+        )
+      ).length;
+      const totalVolumes = (
+        await getAllResources<any>(
+          tokens,
+          () => VolumesService.getVolumes(),
+          'volumes',
+        )
+      ).length;
+      const totalPrimaryIps = (
+        await getAllResources<any>(
+          tokens,
+          () => PrimaryIPsService.getPrimaryIps(),
+          'primary_ips',
+        )
+      ).length;
       return { totalServers, totalVolumes, totalPrimaryIps };
     },
 
     async getServers() {
-      const servers = await ServersService.getServers();
-      return servers.servers.map(server => ({
+      const servers = await getAllResources<any>(
+        tokens,
+        () => ServersService.getServers(),
+        'servers',
+      );
+      return servers.map(server => ({
         id: server.id.toString(),
         name: server.name,
         status: server.status,
@@ -64,8 +104,12 @@ export async function createHetznerService({
     },
 
     async getVolumes() {
-      const volumes = await VolumesService.getVolumes();
-      return volumes.volumes.map(volume => ({
+      const volumes = await getAllResources<any>(
+        tokens,
+        () => VolumesService.getVolumes(),
+        'volumes',
+      );
+      return volumes.map(volume => ({
         id: volume.id.toString(),
         name: volume.name,
         size: volume.size,
@@ -77,8 +121,12 @@ export async function createHetznerService({
     },
 
     async getPrimaryIps() {
-      const primaryIps = await PrimaryIPsService.getPrimaryIps();
-      return primaryIps.primary_ips.map(primaryIp => ({
+      const primaryIps = await getAllResources<any>(
+        tokens,
+        () => PrimaryIPsService.getPrimaryIps(),
+        'primary_ips',
+      );
+      return primaryIps.map(primaryIp => ({
         id: primaryIp.id.toString(),
         name: primaryIp.name,
         server: primaryIp.assignee_type,
