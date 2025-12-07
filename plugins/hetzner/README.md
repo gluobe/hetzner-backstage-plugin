@@ -215,8 +215,8 @@ To set up a custom development environment for the Hetzner Cloud plugin, follow 
 ```tsx
 import { createDevApp } from '@backstage/dev-utils';
 import {
-  hetznerCloudPlugin,
-  HetznerCloudPage,
+  hetznerPlugin,
+  HetznerPage,
   ResourcesCardPage,
 } from '../src/plugin';
 
@@ -326,7 +326,7 @@ export const hetznerPlugin = createPlugin({
   id: 'hetzner-cloud',
   routes: {
     root: rootRouteRef,
-    resourcesCard: resourcesCardRouteCard, //dev
+    resourcesCard: resourcesCardRouteRef, //dev
   },
 });
 
