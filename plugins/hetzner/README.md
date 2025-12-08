@@ -214,11 +214,7 @@ To set up a custom development environment for the Hetzner Cloud plugin, follow 
 
 ```tsx
 import { createDevApp } from '@backstage/dev-utils';
-import {
-  hetznerPlugin,
-  HetznerPage,
-  ResourcesCardPage,
-} from '../src/plugin';
+import { hetznerPlugin, HetznerPage, ResourcesCardPage } from '../src/plugin';
 
 // dev
 import { EntityProvider } from '@backstage/plugin-catalog-react';
