@@ -33,6 +33,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - run: npm publish -w plugins/catalog-backend-module-hetzner
-      - run: npm publish -w plugins/hetzner
-      - run: npm publish -w plugins/hetzner-backend
+      - run: npx changeset publish
