@@ -47,7 +47,8 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "infinispan": "^0.13.0",
-    "koa": "^3.1.2"
+    "koa": "^3.1.2",
+    "@protobufjs/inquire": "patch:@protobufjs/inquire@npm%3A1.1.1#./.yarn/patches/@protobufjs-inquire-npm-1.1.1.patch"
   },
   "prettier": "@backstage/cli/config/prettier",
   "lint-staged": {

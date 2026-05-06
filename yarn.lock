@@ -8551,10 +8551,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@protobufjs/inquire@npm:^1.1.0, @protobufjs/inquire@npm:^1.1.1":
+"@protobufjs/inquire@npm:1.1.1":
   version: 1.1.1
   resolution: "@protobufjs/inquire@npm:1.1.1"
   checksum: 10c0/a638d981adabdbdd61fba04e5045e0d2f98fa557eb0e705482a6dc25e84318bc736b0cd4aaee5d6b9941f121b488ece872c203af2a665b6dfefa95c903bb0cc8
+  languageName: node
+  linkType: hard
+
+"@protobufjs/inquire@patch:@protobufjs/inquire@npm%3A1.1.1#./.yarn/patches/@protobufjs-inquire-npm-1.1.1.patch::locator=root%40workspace%3A.":
+  version: 1.1.1
+  resolution: "@protobufjs/inquire@patch:@protobufjs/inquire@npm%3A1.1.1#./.yarn/patches/@protobufjs-inquire-npm-1.1.1.patch::version=1.1.1&hash=615d41&locator=root%40workspace%3A."
+  checksum: 10c0/abc6d8d665001315687b7a72ebcbe37f30edba8ca4ea6c45bc776ca0d445493720fc4104bc38a5f0f0709582938a9ac2e3e93ffa6b055a0b85a346b862950b99
   languageName: node
   linkType: hard
 
