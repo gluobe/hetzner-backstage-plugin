@@ -29,7 +29,7 @@
     ]
   },
   "devDependencies": {
-    "@backstage/cli": "^0.36.1",
+    "@backstage/cli": "^0.36.2",
     "@backstage/e2e-test-utils": "^0.1.2",
     "@changesets/cli": "^2.29.7",
     "@jest/environment-jsdom-abstract": "^30",
@@ -45,10 +45,7 @@
   },
   "resolutions": {
     "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "infinispan": "^0.13.0",
-    "koa": "^3.1.2",
-    "@protobufjs/inquire": "patch:@protobufjs/inquire@npm%3A1.1.1#./.yarn/patches/@protobufjs-inquire-npm-1.1.1.patch"
+    "@types/react-dom": "^18"
   },
   "prettier": "@backstage/cli/config/prettier",
   "lint-staged": {
