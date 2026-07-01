@@ -30,12 +30,7 @@ export class FloatingIPsService {
     name?: string,
     labelSelector?: string,
     sort?:
-      | 'id'
-      | 'id:asc'
-      | 'id:desc'
-      | 'created'
-      | 'created:asc'
-      | 'created:desc',
+      'id' | 'id:asc' | 'id:desc' | 'created' | 'created:asc' | 'created:desc',
     page: number = 1,
     perPage: number = 25,
   ): CancelablePromise<{

@@ -34,12 +34,7 @@ export class PrimaryIPsService {
     page: number = 1,
     perPage: number = 25,
     sort?:
-      | 'id'
-      | 'id:asc'
-      | 'id:desc'
-      | 'created'
-      | 'created:asc'
-      | 'created:desc',
+      'id' | 'id:asc' | 'id:desc' | 'created' | 'created:asc' | 'created:desc',
   ): CancelablePromise<{
     primary_ips: Array<{
       /**
