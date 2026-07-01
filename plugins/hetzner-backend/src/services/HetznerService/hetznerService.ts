@@ -75,11 +75,11 @@ export async function createHetznerService({
           },
         },
         datacenter: {
-          name: server.datacenter.name,
-          description: server.datacenter.description,
+          name: server.location.name,
+          description: server.location.description,
           location: {
-            city: server.datacenter.location.city,
-            country: server.datacenter.location.country,
+            city: server.location.city,
+            country: server.location.country,
           },
         },
         server_type: {
